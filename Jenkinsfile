@@ -28,7 +28,13 @@ pipeline {
 	stage('Deploy') {
             when {
                 expression { env.GIT_BRANCH == 'origin/main' }
+                beforeInput true
             }
+
+	    input {
+                message 'Approve to deploy  the application?'
+            }
+
             steps {
                 echo 'Deploying...'
             }
